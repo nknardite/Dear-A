@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear A</title>
+    <style>
+        /* Base Reset & Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: radial-gradient(circle, #1a2a4a 0%, #0d1527 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Interactive Button Container */
+        #button-container {
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .open-btn {
+            background: #ffffff;
+            color: #1a2a4a;
+            border: 2px solid #ffffff;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .open-btn:hover {
+            background: transparent;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+        }
+
+        /* Letter Structure (Hidden initially) */
+        .envelope {
+            background: #ffffff;
+            padding: 40px;
+            max-width: 550px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid #e1e8f5;
+            display: none; /* Controlled by JavaScript */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* Decorative Navy Border Strip */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: #1a2a4a;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Letter Content Typography */
+        .salutation {
+            font-size: 1.5rem;
+            color: #1a2a4a;
+            margin-bottom: 25px;
+            font-style: italic;
+            border-bottom: 1px solid #e1e8f5;
+            padding-bottom: 10px;
+        }
+
+        .message-body {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #2c3e50;
+            margin-bottom: 35px;
+        }
+
+        .message-body p {
+            margin-bottom: 18px;
+            text-indent: 15px;
+        }
+
+        .closing {
+            text-align: right;
+            font-size: 1.2rem;
+            color: #1a2a4a;
+            font-style: italic;
+        }
+
+        .signature {
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-style: normal;
+            margin-top: 5px;
+        }
+
+        /* Floating Heart Styling */
+        .heart-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .heart {
+            color: #1a2a4a;
+            font-size: 1.8rem;
+            display: inline-block;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: The Interactive Button -->
+    <div id="button-container">
+        <button class="open-btn" onclick="openLetter()">You have a message ✉️</button>
+    </div>
+
+    <!-- Step 2: The Letter (Revealed after click) -->
+    <div class="envelope" id="love-letter">
+        <div class="salutation">Dearest [Name],</div>
+        
+        <div class="message-body">
+            <p>I wanted to take a moment to write down some thoughts that I don't say often enough. From the moment we met, you've brought a light into my life that I didn't know I was missing.</p>
+            
+            <p>Thank you for the laughter, your endless support, and for simply being who you are. Every day with you is a gift, and I look forward to making many more beautiful memories together.</p>
+            
+            <p>You mean the world to me.</p>
+        </div>
+
+        <div class="closing">
+            With all my love,
+            <div class="signature">[Your Name]</div>
+        </div>
+
+        <div class="heart-container">
+            <span class="heart">💙</span>
+        </div>
+    </div>
+
+    <!-- Step 3: Interactive Logic (JavaScript) -->
+    <script>
+        function openLetter() {
+            const buttonContainer = document.getElementById('button-container');
+            const letter = document.getElementById('love-letter');
+
+            // Hide the button smoothly
+            buttonContainer.style.opacity = '0';
+            
+            setTimeout(() => {
+                buttonContainer.style.display = 'none';
+                
+                // Show the letter frame
+                letter.style.display = 'block';
+                
+                // Trigger the fade-and-rise animation
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                    letter.style.transform = 'translateY(0)';
+                }, 50);
+                
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
